@@ -14,7 +14,7 @@ public class ServletDemo extends HttpServlet {
         String name = request.getParameter("name");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<h3>Hello" + name + "</h3>");
+        out.println("<h1>Welcome " + name + "</h3>");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
