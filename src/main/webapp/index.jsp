@@ -21,28 +21,43 @@
     <div class="row">
         <div class="col span-1-of-2 box">
             <ul class="form-nav">
-                <label>The loan amount requested:<input type="text" id="amount" name="amount"/></label>
-                <label>Number of installments:<input type="text" id="quantity" name="quantity"/></label>
-                <label>Interest:<input type="text" id="percentage" name="percentage"/></label>
-                <label>Fixed Fee:<input type="text" id="fixed-fee" name="fixed fee"/></label>
-                <label>Type of installments:<input type="text" id="type" name="type"/></label>
+                <form action="DemoServlet" method="get">
+                    <label>The loan amount requested:<input type="text" id="amount" name="amount"/></label>
+                    <label>Number of installments:<input type="text" id="quantity" name="quantity"/></label>
+                    <label>Interest:<input type="text" id="percentage" name="percentage"/></label>
+                    <label>Fixed Fee:<input type="text" id="fixedFee" name="fixedFee"/></label>
+                    <label>Type of installments:
+                        <select id="type" name="type">
+                            <option value="constant">Constant</option>
+                            <option value="decreasing">Decreasing</option>
+                        </select>
+                    </label>
             </ul>
         </div>
         <div class="col span-1-of-2 box">
             <div class="second-box">
                 <i class="fas fa-pen-fancy"></i>
                 <div class="buttons-1">
-                    <input type="button" name="SEND" value="SEND" class="btn"/>
+                    <input type="submit"  name="SEND" value="SEND" class="btn sending"/>
+                    </form>
                     <input type="button" name="CONVERT" value="CONVERT TO PDF" class="btn con"/>
                 </div>
                 <div class="git">
-                    <button name="GIT" value="GIT" class="btn git-btn">GIT<i class="fab fa-github"></i></button>
+                    <button name="GIT" value="GIT" class="btn git-btn" onclick="window.location.href='https://github.com/kulaszewicz/java_homework'">GIT<i class="fab fa-github"></i></button>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+<footer>
+    <div class="row">
+        <p>
+            Copyright &copy; 2018 by Jakub Kulaszewicz. All rights reserved.
+        </p>
+    </div>
+</footer>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/script.js"></script>
 </html>
 

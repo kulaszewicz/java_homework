@@ -57,7 +57,7 @@ header {
 .section-exe{
     background-image: url("../resources/background-body.png");
     background-size: cover;
-    height: 60vh;
+    height: 47.1vh;
 }
 
 .form-nav{
@@ -75,6 +75,7 @@ label{
 
 input{
     margin-left: 10px;
+    text-decoration: none;
 }
 
 .second-box{
@@ -110,6 +111,12 @@ i{
     transition: background-color 0.2s, border 0.2s;
     cursor: pointer;
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
 
 .btn:hover,
 .btn:active {
@@ -135,4 +142,16 @@ i{
 .git-btn:active{
     color: #555;
     background-color: #fff;
+}
+
+footer {
+    background-color: #333;
+    padding: 40px;
+    font-size: 70%;
+}
+
+footer p {
+    color: #888;
+    text-align: center;
+    margin-top: 30px;
 }
