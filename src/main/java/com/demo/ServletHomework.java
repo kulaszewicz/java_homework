@@ -73,28 +73,30 @@ public class ServletHomework extends HttpServlet {
                 capitalPart = amount/numOfInstallments;
                 interestPart = (diff *interest) / numOfInterestsPerYear;
                 if (interestPart<=0) interestPart = 0;
-                interestAll = capitalPart + interestPart;
+                interestAll = capitalPart + interestPart + fixedFee;
 
                 out.println("<h2>Installment #" + i + "</h2>");
                 out.println("<h3>Capital part: " + df.format(capitalPart) + "zł</h3>");
                 out.println("<h3>Interest part: " + df.format(interestPart) + "zł</h3>");
+                out.println("<h3>Fixed fee: " + df.format(fixedFee) + "zł</h3>");
                 out.println("<h3>Installment together : " + df.format(interestAll) + "zł</h3>");
             }
         }else if (type.equals("constant")){
-            double interestAll = 0, qFactor, pow, diff = amount,interestPart, capitalPart;
-
+            double interestAll = 0, qFactor, pow, diff = amount,interestPart, capitalPart, test;
+            int fee = (int) fixedFee;
             for (int i = 1; i<=numOfInstallments; i++) {
                 diff-=interestAll;
                 qFactor = 1 + (interest / 12);
                 pow = Math.pow(qFactor, numOfInstallments);
 
-                interestAll = (amount * pow * (qFactor - 1)) / (pow - 1);
+                interestAll = ((amount * pow * (qFactor - 1)) / (pow - 1));
                 interestPart = diff*(interest/12);
                 capitalPart = interestAll - interestPart;
-
+                interestAll = fixedFee + capitalPart + interestPart;
                 out.println("<h2>Installment #" + i + "</h2>");
                 out.println("<h3>Capital part: " + df.format(capitalPart) + "zł</h3>");
                 out.println("<h3>Interest part: " + df.format(interestPart) + "zł</h3>");
+                out.println("<h3>Fixed fee: " + df.format(fixedFee) + "zł</h3>");
                 out.println("<h3>Installment together : " + df.format(interestAll) + "zł</h3>");
 
             }
