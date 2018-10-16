@@ -21,19 +21,19 @@ public class ServletHomework extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String amount = request.getParameter("amount");
-        emptyChecker(amount, response);
+        //emptyChecker(amount, response);
         Double amountParsed = Double.parseDouble(amount);
 
         String numOfInstallments = request.getParameter("quantity");
-        emptyChecker(numOfInstallments, response);
+        //emptyChecker(numOfInstallments, response);
         Integer numOfInstallmentsParsed = Integer.parseInt(numOfInstallments);
 
         String interest = request.getParameter("percentage");
-        emptyChecker(interest, response);
+        //emptyChecker(interest, response);
         Double interestParsed = Double.parseDouble(interest);
 
         String fixedFee = request.getParameter("fixedFee");
-        emptyChecker(fixedFee, response);
+        //emptyChecker(fixedFee, response);
         Double fixedFeeParsed = Double.parseDouble(fixedFee);
 
         String type = request.getParameter("type");

@@ -32,6 +32,8 @@ h2:after{
 }
 
 h3{
+    margin-left: 40%;
+    width: 20%;
     font-size: 150%;
     color: #555;
     text-transform: uppercase;
@@ -154,4 +156,12 @@ footer p {
     color: #888;
     text-align: center;
     margin-top: 30px;
+}
+
+.error{
+    box-shadow: 0 0 7px #cc0221;
+}
+
+.error2{
+    border: #cc0221 20px;
 }
