@@ -49,6 +49,20 @@ h3{
 
 }
 
+table {
+    padding-bottom: 30px;
+    margin-top: 3%;
+    color: #555;
+    width: 60%;
+    margin-left: 20%;
+}
+
+td,th {
+    border: 1px solid #555;
+    text-align: left;
+    padding: 8px;
+}
+
 header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.16), rgba(0, 0, 25, 15)), url("../resources/background-head.jpg");
     background-size: cover;
@@ -57,9 +71,9 @@ header {
     height: 40vh;
 }
 .section-exe{
+    min-height: 49.2vh;
     background-image: url("../resources/background-body.png");
     background-size: cover;
-    height: 47.1vh;
 }
 
 .form-nav{
@@ -148,7 +162,7 @@ button:focus {
 
 footer {
     background-color: #333;
-    padding: 40px;
+    padding: 30px;
     font-size: 70%;
 }
 

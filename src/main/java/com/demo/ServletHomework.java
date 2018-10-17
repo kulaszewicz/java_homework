@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+
 @WebServlet("/DemoServlet")
 public class ServletHomework extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +48,7 @@ public class ServletHomework extends HttpServlet {
         out.println("<h1>Fixed fee:  " + fixedFeeParsed + "</h1>");
         out.println("<h1>Type:  " + type + "</h1>");
 
-        installmentsCalc(amountParsed, numOfInstallmentsParsed, interestParsed, fixedFeeParsed, type, response);
+        installmentsCalc(amountParsed, numOfInstallmentsParsed, interestParsed, fixedFeeParsed, type, response, request);
     }
 
     private void emptyChecker(String value, HttpServletResponse response)throws ServletException, IOException{
@@ -56,9 +57,12 @@ public class ServletHomework extends HttpServlet {
         }
     }
 
-    private void installmentsCalc(double amount, int numOfInstallments, double interest, double fixedFee, String type, HttpServletResponse response)throws ServletException, IOException{
+    private void installmentsCalc(double amount, int numOfInstallments, double interest, double fixedFee, String type, HttpServletResponse response, HttpServletRequest request)throws ServletException, IOException{
         PrintWriter out = response.getWriter();
-
+        Integer[] numOfInstallmentsA = new Integer[numOfInstallments+1];
+        Double[] capitalPartA = new Double[numOfInstallments+1];
+        Double[] interestPartA = new Double[numOfInstallments+1];
+        Double[] interestAllsA = new Double[numOfInstallments+1];
         interest = interest/100;
 
         DecimalFormat df = new DecimalFormat("####0.00");
@@ -75,15 +79,32 @@ public class ServletHomework extends HttpServlet {
                 if (interestPart<=0) interestPart = 0;
                 interestAll = capitalPart + interestPart + fixedFee;
 
-                out.println("<h2>Installment #" + i + "</h2>");
+                numOfInstallmentsA [i-1] = i;
+                capitalPartA [i-1] = capitalPart;
+                interestPartA [i-1] = interestPart;
+                interestAllsA [i-1] = interestAll;
+
+                request.setAttribute("interestPart", interestPartA);
+                request.setAttribute("capitalPart", capitalPartA);
+                request.setAttribute("interestAll", interestAllsA);
+                request.setAttribute("numOfInstallments", numOfInstallmentsA);
+                request.setAttribute("fixedFee", fixedFee);
+
+
+
+
+
+
+                /*out.println("<h2>Installment #" + i + "</h2>");
                 out.println("<h3>Capital part: " + df.format(capitalPart) + "zł</h3>");
                 out.println("<h3>Interest part: " + df.format(interestPart) + "zł</h3>");
                 out.println("<h3>Fixed fee: " + df.format(fixedFee) + "zł</h3>");
-                out.println("<h3>Installment together : " + df.format(interestAll) + "zł</h3>");
-            }
+                out.println("<h3>Installment together : " + df.format(interestAll) + "zł</h3>");*/
+                }
+            request.getRequestDispatcher("/pages/recive.jsp").forward(request, response);
         }else if (type.equals("constant")){
-            double interestAll = 0, qFactor, pow, diff = amount,interestPart, capitalPart, test;
-            int fee = (int) fixedFee;
+            double interestAll = 0, qFactor, pow, diff = amount,interestPart, capitalPart;
+
             for (int i = 1; i<=numOfInstallments; i++) {
                 diff-=interestAll;
                 qFactor = 1 + (interest / 12);
@@ -93,13 +114,26 @@ public class ServletHomework extends HttpServlet {
                 interestPart = diff*(interest/12);
                 capitalPart = interestAll - interestPart;
                 interestAll = fixedFee + capitalPart + interestPart;
-                out.println("<h2>Installment #" + i + "</h2>");
-                out.println("<h3>Capital part: " + df.format(capitalPart) + "zł</h3>");
-                out.println("<h3>Interest part: " + df.format(interestPart) + "zł</h3>");
-                out.println("<h3>Fixed fee: " + df.format(fixedFee) + "zł</h3>");
-                out.println("<h3>Installment together : " + df.format(interestAll) + "zł</h3>");
+
+
+                numOfInstallmentsA [i-1] = i;
+                capitalPartA [i-1] = capitalPart;
+                interestPartA [i-1] = interestPart;
+                interestAllsA [i-1] = interestAll;
+
+                request.setAttribute("interestPart", interestPartA);
+                request.setAttribute("capitalPart", capitalPartA);
+                request.setAttribute("interestAll", interestAllsA);
+                request.setAttribute("numOfInstallments", numOfInstallmentsA);
+                request.setAttribute("fixedFee", fixedFee);
+
+
+
+
 
             }
+
+            request.getRequestDispatcher("/pages/recive.jsp").forward(request, response);
         }
     }
 }
