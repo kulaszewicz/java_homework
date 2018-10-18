@@ -6,6 +6,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="homework" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.itextpdf:itextpdf:5.5.10" />
+          <element id="library" level="project" name="Maven: org.apache.pdfbox:pdfbox:2.0.4" />
+          <element id="library" level="project" name="Maven: org.apache.pdfbox:fontbox:2.0.4" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/javaee-web-api/META-INF/MANIFEST.MF" />
